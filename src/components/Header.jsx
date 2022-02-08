@@ -1,11 +1,14 @@
-//import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Logo from "../assets/logo.svg";
 export default function Header() {
   return (
-    <Navbar style={{ backgroundColor: "#D90000", minHeight: "10vh" }} expand="sm">
+    <Navbar
+      className="position-sticky"
+      style={{ backgroundColor: "#D90000", minHeight: "10vh" }}
+      expand="sm"
+    >
       <Container>
         <Navbar.Brand>
           <img src={Logo} alt="Logo image" />

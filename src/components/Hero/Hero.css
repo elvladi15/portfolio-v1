@@ -1,16 +1,67 @@
+#hero__title {
+  animation: titleAnimation 1s;
+}
+#scroll-animation {
+  width: 30px;
+  height: 60px;
+  border: 4px solid #fff;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+#circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #fff;
+  animation: circleAnimation 1s infinite alternate-reverse;
+}
 #hero__bg {
-  width: 100%;
-  height: 100%;
-  position: absolute;
+  height: calc(90vh + 24px);
+  top: -24px;
+  bottom: 0;
   z-index: -1;
-  background-color: #a30000;
+  right: -400px;
+}
+@keyframes titleAnimation {
+  from {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes circleAnimation {
+  from {
+    transform: translateY(5px);
+  }
+  to {
+    transform: translateY(30px);
+  }
+}
+@keyframes backgroundAnimation {
+  from {
+    transform: translateX(-200px);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @media (min-width: 768px) {
   #hero__bg {
-    width: 50%;
+    right: calc(25vw - 50px);
+    animation: backgroundAnimation 1s;
   }
   #hero__title {
     width: 38vw;
+  }
+  #scroll-animation {
+    margin-left: 0;
   }
 }
