@@ -1,0 +1,16 @@
+#hero__bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  background-color: #a30000;
+}
+
+@media (min-width: 768px) {
+  #hero__bg {
+    width: 50%;
+  }
+  #hero__title {
+    width: 38vw;
+  }
+}
