@@ -10,7 +10,7 @@ export default function Hero() {
         <h1 id="hero__title" className="display-4 fw-bold text-center text-md-start">
           Building amazing projects and experiences!
         </h1>
-        <p className="text-center text-md-start">
+        <p id="get-to-know-me" className="text-center text-md-start">
           <span>👇 </span>Get to know me
         </p>
         <div id="scroll-animation">
