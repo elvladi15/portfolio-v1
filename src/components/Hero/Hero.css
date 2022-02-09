@@ -1,9 +1,8 @@
-#hero__title {
-  animation: titleAnimation 1s;
-}
+#hero__title,
 #get-to-know-me {
   animation: titleAnimation 1s;
 }
+
 #scroll-animation {
   width: 30px;
   height: 60px;
