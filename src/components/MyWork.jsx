@@ -1,6 +1,6 @@
 import Container from "react-bootstrap/Container";
 import Project from "./Project";
-import ChessImage from "../assets/projects_images/chess_app.png";
+import ChessImage from "../assets/projects_images/chess_app.svg";
 export default function MyWork() {
   const projects = [
     {
