@@ -1,3 +1,4 @@
+import Container from "react-bootstrap/Container";
 import { AiFillGithub } from "react-icons/ai";
 
 export default function Project({ project }) {
@@ -6,76 +7,80 @@ export default function Project({ project }) {
   return (
     <div
       className="
-    d-flex flex-column 
+    d-flex flex-column rounded-3 overflow-hidden mb-5
     flex-md-row
     "
-      style={{ backgroundColor: "transparent" }}
+      style={{ backgroundColor: "#423EF9" }}
     >
       <img
         className="
-        w-100 mb-4
-        w-md-50 mb-md-0"
+      w-100
+      "
         src={image}
-        style={{ maxWidth: "100%" }}
         alt="Project image"
       />
 
-      <div
-        className="
-      w-100 text-center ms-0
-      w-md-50 text-md-start ms-md-4
-      "
-      >
-        <h1 className="mb-4">{title}</h1>
+      <Container>
         <div
           className="
-        d-flex flex-column 
-        flex-sm-row 
-        flex-md-column align-items-md-start
+         py-5 h-100 text-center d-flex flex-column justify-content-center
+        py-md-0 text-md-start ms-md-3
         "
         >
-          <a
-            style={{
-              color: "white",
-              backgroundColor: "transparent",
-              border: "5px solid white",
-              borderRadius: "10px",
-              padding: "0.5em 1em",
-              fontWeight: "bold",
-              textDecoration: "none",
-            }}
-            href={url}
-            target="_blank"
+          <h1
             className="
-            mb-3
-            mb-sm-0 ms-sm-auto me-sm-3
-            mb-md-3 ms-md-0 me-md-0
-            "
+          fw-bold mb-4
+          "
           >
-            View project
-          </a>
-          <a
-            style={{
-              color: "white",
-              backgroundColor: "black",
-              border: "none",
-              borderRadius: "10px",
-              padding: ".85em 1em",
-              fontWeight: "bold",
-              textDecoration: "none",
-            }}
-            href={githubRepo}
-            target="_blank"
+            {title}
+          </h1>
+          <div
             className="
-            me-sm-auto
-            me-md-0
-            "
+          d-flex flex-column
+          flex-sm-row justify-content-center align-items-md-start
+          flex-md-column
+          "
           >
-            <AiFillGithub className="me-2" size={22} />
-            View on GitHub
-          </a>
+            <a
+              style={{
+                color: "white",
+                backgroundColor: "transparent",
+                border: "5px solid white",
+                borderRadius: "10px",
+                padding: "0.5em 1em",
+                fontWeight: "bold",
+                textDecoration: "none",
+              }}
+              href={url}
+              target="_blank"
+              className="
+              mb-3
+              mb-sm-0 me-sm-4
+              mb-md-4 me-md-0
+              "
+            >
+              View project
+            </a>
+            <a
+              style={{
+                color: "white",
+                backgroundColor: "black",
+                border: "none",
+                borderRadius: "10px",
+                padding: ".85em 1em",
+                fontWeight: "bold",
+                textDecoration: "none",
+              }}
+              href={githubRepo}
+              target="_blank"
+              className=""
+            >
+              <AiFillGithub className="" size={22} />
+              View on GitHub
+            </a>
+          </div>
         </div>
-      </div>
+      </Container>
     </div>
   );
 }

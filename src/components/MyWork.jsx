@@ -1,6 +1,9 @@
 import Container from "react-bootstrap/Container";
 import Project from "./Project";
+
 import ChessImage from "../assets/projects_images/chess_app.svg";
+import BudgetImage from "../assets/projects_images/budget_app.svg";
+
 export default function MyWork() {
   const projects = [
     {
@@ -8,6 +11,12 @@ export default function MyWork() {
       url: "https://elvladi15.github.io/chess-game",
       githubRepo: "https://github.com/elvladi15/chess-game",
       image: ChessImage,
+    },
+    {
+      title: "Budget App",
+      url: "https://elvladi15.github.io/budget-app",
+      githubRepo: "https://github.com/elvladi15/budget-app",
+      image: BudgetImage,
     },
   ];
   return (
