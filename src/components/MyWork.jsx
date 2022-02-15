@@ -22,7 +22,7 @@ export default function MyWork() {
   return (
     <section className="py-5 text-white" style={{ backgroundColor: "#4E4BFA" }}>
       <Container>
-        <h2 className="display-4 text-center mb-4" style={{ textTransform: "uppercase" }}>
+        <h2 className="display-4 text-center mb-5" style={{ textTransform: "uppercase" }}>
           My work
         </h2>
         <div>
