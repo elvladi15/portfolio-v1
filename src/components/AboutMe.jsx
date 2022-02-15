@@ -4,12 +4,27 @@ import ProfilePicture from "../assets/profile-picture.png";
 export default function AboutMe() {
   return (
     <section className="py-5">
-      <Container className="d-flex flex-column flex-md-row">
-        <div className="mx-auto mb-5 w-75 w-md-50">
+      <Container
+        className="
+      d-flex flex-column 
+      flex-md-row
+      "
+      >
+        <div
+          className="
+        mx-auto mb-5 w-75 
+        w-md-50
+        "
+        >
           <img style={{ maxWidth: "100%" }} src={ProfilePicture} alt="Profile picture" />
         </div>
 
-        <div className="w-100 w-md-50 ms-0 ms-md-5 text-center text-md-start">
+        <div
+          className="
+          w-100 ms-0 text-center
+          w-md-50 ms-md-5 text-md-start
+        "
+        >
           <h2 style={{ textTransform: "uppercase" }} className="display-4">
             About me
           </h2>

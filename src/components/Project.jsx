@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import { AiFillGithub } from "react-icons/ai";
 
-export default function Project({ project }) {
+export default function Project({ id, project }) {
   const { title, url, githubRepo, image } = project;
 
   return (
@@ -13,9 +13,9 @@ export default function Project({ project }) {
       style={{ backgroundColor: "#423EF9" }}
     >
       <img
-        className="
-      w-100
-      "
+        className={`w-100 
+        ${id % 2 === 0 ? null : "order-md-last"}
+        `}
         src={image}
         alt="Project image"
       />
@@ -23,8 +23,8 @@ export default function Project({ project }) {
       <Container>
         <div
           className="
-         py-5 h-100 text-center d-flex flex-column justify-content-center
-        py-md-0 text-md-start ms-md-3
+         py-5 h-100 text-center d-flex flex-column justify-content-center align-items-center
+        py-md-3 text-md-start
         "
         >
           <h1
@@ -36,9 +36,9 @@ export default function Project({ project }) {
           </h1>
           <div
             className="
-          d-flex flex-column
-          flex-sm-row justify-content-center align-items-md-start
-          flex-md-column
+          d-flex flex-column justify-content-center w-100
+          flex-sm-row 
+          flex-md-column align-items-md-center
           "
           >
             <a
