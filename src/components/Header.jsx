@@ -2,6 +2,8 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Logo from "../assets/logo.svg";
+import { GoThreeBars } from "react-icons/go";
+
 export default function Header() {
   return (
     <Navbar style={{ backgroundColor: "#D90000", minHeight: "10vh" }} expand="sm" sticky="top">
@@ -9,7 +11,16 @@ export default function Header() {
         <Navbar.Brand>
           <img src={Logo} alt="Logo image" />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Toggle
+          style={{
+            border: "none",
+          }}
+          aria-controls="basic-navbar-nav"
+        >
+          <span>
+            <GoThreeBars color="white" size={30} />
+          </span>
+        </Navbar.Toggle>
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="
