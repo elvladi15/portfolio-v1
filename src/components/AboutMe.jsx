@@ -3,7 +3,7 @@ import ProfilePicture from "../assets/profile-picture.png";
 
 export default function AboutMe() {
   return (
-    <section className="py-5">
+    <section id="about-me" className="py-5">
       <Container
         className="
       d-flex flex-column 

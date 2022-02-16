@@ -19,8 +19,9 @@ export default function MyWork() {
       image: BudgetImage,
     },
   ];
+
   return (
-    <section className="py-5 text-white" style={{ backgroundColor: "#4E4BFA" }}>
+    <section id="my-work" className="py-5 text-white" style={{ backgroundColor: "#4E4BFA" }}>
       <Container>
         <h2 className="display-4 text-center mb-5" style={{ textTransform: "uppercase" }}>
           My work

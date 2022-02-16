@@ -19,6 +19,7 @@ export default function MySkills() {
   ];
   return (
     <section
+      id="my-skills"
       style={{
         backgroundColor: "#f0f0f0",
       }}
