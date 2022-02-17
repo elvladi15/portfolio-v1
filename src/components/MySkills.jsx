@@ -26,10 +26,7 @@ export default function MySkills() {
       className="py-5"
     >
       <Container>
-        <h2 className="display-4 text-center mb-5" style={{ textTransform: "uppercase" }}>
-          My skills
-        </h2>
-
+        <h2 className="display-4 text-uppercase text-center mb-5">My skills</h2>
         <div
           style={{
             display: "flex",

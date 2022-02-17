@@ -25,9 +25,7 @@ export default function AboutMe() {
           w-md-50 ms-md-5 text-md-start
         "
         >
-          <h2 style={{ textTransform: "uppercase" }} className="display-4">
-            About me
-          </h2>
+          <h2 className="display-4 text-uppercase">About me</h2>
           <p className="fs-4">
             My name is Vladimir Francisco Díaz, I am a ReactJS Frontend Developer that loves
             technology and web development. I like learning new things to improve my skills and

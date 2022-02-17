@@ -4,7 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Logo from "../assets/logo.svg";
 import { GoThreeBars } from "react-icons/go";
 
-export default function Header() {
+export default function Header({ openContactModal }) {
   return (
     <Navbar style={{ backgroundColor: "#D90000", minHeight: "10vh" }} expand="sm" sticky="top">
       <Container>
@@ -39,7 +39,9 @@ export default function Header() {
             <Nav.Link className="text-white" href="#my-skills">
               My skills
             </Nav.Link>
-            <Nav.Link className="text-white">Contact me</Nav.Link>
+            <Nav.Link className="text-white" onClick={openContactModal}>
+              Contact me
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

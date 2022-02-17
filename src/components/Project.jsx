@@ -12,7 +12,7 @@ export default function Project({ id, project }) {
       style={{ backgroundColor: "#423EF9" }}
     >
       <div
-        style={{ backgroundColor: "#6B4BFA" }}
+        style={{ backgroundColor: "#fff" }}
         className={`
         d-flex align-items-center
       w-100
@@ -22,64 +22,68 @@ export default function Project({ id, project }) {
       </div>
 
       <div
-        style={{
-          boxSizing: "border-box",
-        }}
         className="
-         py-5 w-100 mx-auto text-center d-flex flex-column justify-content-center align-items-center
-         py-md-3 w-md-50
+        py-5 w-100 m-auto
         "
       >
-        <h1
+        <div
+          style={{ width: "85%" }}
           className="
+            mx-auto text-center d-flex flex-column justify-content-center align-items-center
+         
+        "
+        >
+          <h1
+            className="
           fw-bold mb-4
           "
-        >
-          {title}
-        </h1>
-        <div
-          className="
-          d-flex flex-column justify-content-center w-75
+          >
+            {title}
+          </h1>
+          <div
+            className="
+          w-100 d-flex flex-column justify-content-center 
           flex-sm-row 
           flex-md-column align-items-md-center
           "
-        >
-          <a
-            style={{
-              color: "white",
-              backgroundColor: "transparent",
-              border: "5px solid white",
-              borderRadius: "10px",
-              padding: "0.5em 1em",
-              fontWeight: "bold",
-              textDecoration: "none",
-            }}
-            href={url}
-            target="_blank"
-            className="
+          >
+            <a
+              style={{
+                color: "white",
+                backgroundColor: "transparent",
+                border: "5px solid white",
+                borderRadius: "10px",
+                padding: "0.5em 1em",
+                fontWeight: "bold",
+                textDecoration: "none",
+              }}
+              href={url}
+              target="_blank"
+              className="
               mb-3
               mb-sm-0 me-sm-4
               mb-md-4 me-md-0
               "
-          >
-            View project
-          </a>
-          <a
-            style={{
-              color: "white",
-              backgroundColor: "black",
-              border: "none",
-              borderRadius: "10px",
-              padding: ".85em 1em",
-              fontWeight: "bold",
-              textDecoration: "none",
-            }}
-            href={githubRepo}
-            target="_blank"
-          >
-            <AiFillGithub className="me-2" size={22} />
-            View on GitHub
-          </a>
+            >
+              View project
+            </a>
+            <a
+              style={{
+                color: "white",
+                backgroundColor: "black",
+                border: "none",
+                borderRadius: "10px",
+                padding: ".85em 1em",
+                fontWeight: "bold",
+                textDecoration: "none",
+              }}
+              href={githubRepo}
+              target="_blank"
+            >
+              <AiFillGithub className="me-2" size={22} />
+              View on GitHub
+            </a>
+          </div>
         </div>
       </div>
     </div>

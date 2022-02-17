@@ -23,9 +23,7 @@ export default function MyWork() {
   return (
     <section id="my-work" className="py-5 text-white" style={{ backgroundColor: "#4E4BFA" }}>
       <Container>
-        <h2 className="display-4 text-center mb-5" style={{ textTransform: "uppercase" }}>
-          My work
-        </h2>
+        <h2 className="display-4 text-uppercase text-center mb-5">My work</h2>
         <div>
           {projects.map((project, index) => (
             <Project key={index} id={index} project={project} />

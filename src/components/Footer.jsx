@@ -5,7 +5,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { AiFillGithub } from "react-icons/ai";
 import { RiPhoneFill } from "react-icons/ri";
 
-export default function Footer() {
+export default function Footer({ openContactModal }) {
   const socialMediaButtonStyle = {
     backgroundColor: "#D90000",
     width: "3rem",
@@ -37,9 +37,10 @@ export default function Footer() {
               margin: "0 auto 3rem",
               backgroundColor: "#D90000",
               border: "none",
-              padding: ".7em 3em",
+              padding: ".7em 2.2em",
             }}
             className="rounded-pill text-light fs-5"
+            onClick={openContactModal}
           >
             Contact me!
           </button>
@@ -47,7 +48,7 @@ export default function Footer() {
 
         <div
           style={{
-            width: "min(70%, 300px)",
+            width: "min(80%, 300px)",
             marginBottom: "3rem",
           }}
           className="mx-auto d-flex justify-content-between"
