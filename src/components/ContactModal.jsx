@@ -5,37 +5,33 @@ import Stack from "react-bootstrap/Stack";
 import { useState } from "react";
 
 export default function ContactModal({ show, handleClose }) {
-  const [name, setName] = useState({ value: "", isFirstRender: true });
-  const [email, setEmail] = useState({ value: "", isFirstRender: true });
-  const [subject, setSubject] = useState({ value: "", isFirstRender: true });
-  const [message, setMessage] = useState({ value: "", isFirstRender: true });
+  const fieldInitialValue = { value: "", isFirstRender: true };
 
-  function isInvalidName() {
-    if (name.isFirstRender) return false;
-    if (name.value === "") return true;
-    return false;
-  }
-  function isInvalidEmail() {
-    if (email.isFirstRender) return false;
-    if (email.value === "") {
-      return true;
+  const [name, setName] = useState(fieldInitialValue);
+  const [email, setEmail] = useState(fieldInitialValue);
+  const [subject, setSubject] = useState(fieldInitialValue);
+  const [message, setMessage] = useState(fieldInitialValue);
+
+  const emailRegEx = /[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,8}(.[a-z{2,8}])?/g;
+
+  const isInvalidName = isInvalidField(name);
+  const isInvalidEmail = isInvalidField(email);
+  const isInvalidSubject = isInvalidField(subject);
+  const isInvalidMessage = isInvalidField(message);
+
+  function isInvalidField(field) {
+    if (field.isFirstRender) return false;
+    if (field.value === "") return true;
+
+    if (field === email) {
+      return !emailRegEx.test(email.value);
     }
-    if (!email.value.includes("@")) return true;
     return false;
   }
-  function isInvalidSubject() {
-    if (subject.isFirstRender) return false;
-    if (subject.value === "") return true;
-    return false;
-  }
-  function isInvalidMessage() {
-    if (message.isFirstRender) return false;
-    if (message.value === "") return true;
-    return false;
-  }
+
   function getInvalidEmailMessage() {
-    if (email.value === "") return "@Please fill out the email";
-    if (!email.value.includes("@")) return "*Please type a valid email address";
+    if (email.value === "") return "*Please fill out the email";
+    if (!emailRegEx.test(email.value)) return "*Please type a valid email address";
   }
   function isSubmitButtonDisabled() {
     if (
@@ -46,7 +42,8 @@ export default function ContactModal({ show, handleClose }) {
     ) {
       return true;
     }
-    if (isInvalidName() || isInvalidEmail() || isInvalidSubject() || isInvalidMessage()) {
+
+    if (isInvalidName || isInvalidEmail || isInvalidSubject || isInvalidMessage) {
       return true;
     }
 
@@ -54,10 +51,10 @@ export default function ContactModal({ show, handleClose }) {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    setName({ value: "", isFirstRender: true });
-    setEmail({ value: "", isFirstRender: true });
-    setSubject({ value: "", isFirstRender: true });
-    setMessage({ value: "", isFirstRender: true });
+    setName(fieldInitialValue);
+    setEmail(fieldInitialValue);
+    setSubject(fieldInitialValue);
+    setMessage(fieldInitialValue);
 
     handleClose();
   }
@@ -73,23 +70,23 @@ export default function ContactModal({ show, handleClose }) {
             <Form.Control
               value={name.value}
               onChange={e => setName({ value: e.target.value, isFirstRender: false })}
-              isInvalid={isInvalidName()}
+              isInvalid={isInvalidName}
               id="name"
               type="text"
             />
-            {isInvalidName() && <p className="text-danger">*Please fill out the name</p>}
+            {isInvalidName && <p className="text-danger">*Please fill out the name</p>}
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label htmlFor="email">Email</Form.Label>
             <Form.Control
               value={email.value}
-              isInvalid={isInvalidEmail()}
+              isInvalid={isInvalidEmail}
               onChange={e => setEmail({ value: e.target.value, isFirstRender: false })}
               id="email"
               type="email"
             />
-            {isInvalidEmail() && <p className="text-danger">{getInvalidEmailMessage()}</p>}
+            {isInvalidEmail && <p className="text-danger">{getInvalidEmailMessage()}</p>}
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -97,11 +94,11 @@ export default function ContactModal({ show, handleClose }) {
             <Form.Control
               value={subject.value}
               onChange={e => setSubject({ value: e.target.value, isFirstRender: false })}
-              isInvalid={isInvalidSubject()}
+              isInvalid={isInvalidSubject}
               id="subject"
               type="text"
             />
-            {isInvalidSubject() && <p className="text-danger">*Please fill out the subject</p>}
+            {isInvalidSubject && <p className="text-danger">*Please fill out the subject</p>}
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -109,12 +106,12 @@ export default function ContactModal({ show, handleClose }) {
             <Form.Control
               value={message.value}
               onChange={e => setMessage({ value: e.target.value, isFirstRender: false })}
-              isInvalid={isInvalidMessage()}
+              isInvalid={isInvalidMessage}
               id="message"
               as="textarea"
               rows={3}
             />
-            {isInvalidMessage() && <p className="text-danger">*Please fill out the message</p>}
+            {isInvalidMessage && <p className="text-danger">*Please fill out the message</p>}
           </Form.Group>
 
           <Stack>
