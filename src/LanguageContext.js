@@ -6,7 +6,7 @@ export function useLanguageContext() {
   return useContext(LanguageContext);
 }
 export function LanguageContextProvider({ children }) {
-  const [language, setLanguage] = useState(LANGUAGES.SPANISH);
+  const [language, setLanguage] = useState(LANGUAGES.ENGLISH);
 
   return (
     <LanguageContext.Provider
