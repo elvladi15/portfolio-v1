@@ -8,24 +8,17 @@ import ContactModal from "./components/ContactModal";
 import { useState } from "react";
 
 function App() {
-  const [showContactModal, setShowContactModal] = useState(false);
-
-  function openContactModal() {
-    setShowContactModal(true);
-  }
-  function closeContactModal() {
-    setShowContactModal(false);
-  }
+  const [showContactModal, setShowContactModal] = useState(true);
 
   return (
     <>
-      <Header openContactModal={openContactModal} />
+      <Header openContactModal={() => setShowContactModal(true)} />
       <Hero />
       <AboutMe />
       <MyWork />
       <MySkills />
-      <Footer openContactModal={openContactModal} />
-      <ContactModal show={showContactModal} handleClose={closeContactModal} />
+      <Footer openContactModal={() => setShowContactModal(true)} />
+      <ContactModal show={showContactModal} handleClose={() => setShowContactModal(false)} />
     </>
   );
 }
