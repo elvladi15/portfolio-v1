@@ -9,28 +9,11 @@ import emailjs from "@emailjs/browser";
 
 const STATUS = {
   UNSUBMITTED: "unsubmitted",
+  LOADING: "loading",
   SUCCESS: "success",
   FAILED: "failed",
 };
-function renderAlert(status, handleAlertClose) {
-  function getVariant() {
-    if (status === STATUS.SUCCESS) return "success";
-    if (status === STATUS.FAILED) return "danger";
-    return "";
-  }
-  return (
-    <Alert
-      show={status !== STATUS.UNSUBMITTED}
-      variant={getVariant()}
-      onClose={handleAlertClose}
-      dismissible
-    >
-      {status === STATUS.SUCCESS
-        ? "Contact information submitted successfully!"
-        : "Could not send contact information. Please try again."}
-    </Alert>
-  );
-}
+
 export default function ContactModal({ show, handleClose }) {
   const fieldsInitialValue = {
     name: { value: "", isFirstRender: true },
@@ -40,7 +23,8 @@ export default function ContactModal({ show, handleClose }) {
   };
 
   const [fields, setFields] = useState(fieldsInitialValue);
-  const [status, setStatus] = useState(STATUS.SUCCESS);
+  const [status, setStatus] = useState(STATUS.UNSUBMITTED);
+  const [showAlert, setShowAlert] = useState(false);
 
   const emailRegEx = /[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,8}(.[a-z{2,8}])?/g;
 
@@ -72,6 +56,7 @@ export default function ContactModal({ show, handleClose }) {
     }));
   }
   function isSubmitButtonDisabled() {
+    if (status === STATUS.LOADING) return true;
     if (
       fields.name.isFirstRender ||
       fields.email.isFirstRender ||
@@ -89,7 +74,9 @@ export default function ContactModal({ show, handleClose }) {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    /* emailjs
+    setStatus(STATUS.LOADING);
+
+    emailjs
       .send(
         "service_fh9vvkk",
         "template_69x0rdi",
@@ -103,12 +90,16 @@ export default function ContactModal({ show, handleClose }) {
       )
       .then(response => {
         console.log(response);
+        setStatus(STATUS.SUCCESS);
+        setShowAlert(true);
         setFields(fieldsInitialValue);
       })
       .catch(error => {
         console.log(error);
-      }); */
-    //handleClose();
+        setStatus(STATUS.FAILED);
+        setShowAlert(true);
+        setFields(fieldsInitialValue);
+      });
   }
   return (
     <Modal show={show} onHide={handleClose}>
@@ -116,7 +107,17 @@ export default function ContactModal({ show, handleClose }) {
         <Modal.Title className="text-uppercase">Contact me</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {renderAlert(status, () => setStatus(STATUS.UNSUBMITTED))}
+        <Alert
+          show={showAlert}
+          variant={status === STATUS.SUCCESS ? "success" : "danger"}
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
+          {status === STATUS.SUCCESS
+            ? "Contact information submitted successfully!"
+            : "Could not send contact information. Please try again."}
+        </Alert>
+
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="name">Name</Form.Label>
@@ -168,8 +169,24 @@ export default function ContactModal({ show, handleClose }) {
           </Form.Group>
 
           <Stack>
-            <Button type="submit" className="ms-auto" disabled={isSubmitButtonDisabled()}>
-              Send
+            <Button
+              variant="primary"
+              type="submit"
+              className="ms-auto"
+              disabled={isSubmitButtonDisabled()}
+            >
+              {status === STATUS.LOADING ? (
+                <>
+                  <span
+                    className="spinner-border spinner-border-sm me-1"
+                    role="status"
+                    aria-hidden={true}
+                  />
+                  Loading...
+                </>
+              ) : (
+                "Send"
+              )}
             </Button>
           </Stack>
         </Form>

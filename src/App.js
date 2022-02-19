@@ -8,7 +8,7 @@ import ContactModal from "./components/ContactModal";
 import { useState } from "react";
 
 function App() {
-  const [showContactModal, setShowContactModal] = useState(true);
+  const [showContactModal, setShowContactModal] = useState(false);
 
   return (
     <>
