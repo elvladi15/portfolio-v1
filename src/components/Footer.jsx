@@ -1,11 +1,16 @@
+import { useLanguageContext } from "../LanguageContext";
+
 import Container from "react-bootstrap/Container";
 import Stack from "react-bootstrap/Stack";
 import { FiMail } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
 import { AiFillGithub } from "react-icons/ai";
 import { RiPhoneFill } from "react-icons/ri";
+import { translations } from "../translations";
 
 export default function Footer({ openContactModal }) {
+  const { language } = useLanguageContext();
+
   const socialMediaButtonStyle = {
     backgroundColor: "#D90000",
     width: "3rem",
@@ -28,7 +33,7 @@ export default function Footer({ openContactModal }) {
     >
       <Container className="text-light">
         <h2 className="display-4 text-center fw-bold" style={{ marginBottom: "3rem" }}>
-          Interested in my Work?
+          {translations.footer.title[language]}
         </h2>
 
         <Stack>
@@ -42,7 +47,7 @@ export default function Footer({ openContactModal }) {
             className="rounded-pill text-light fs-5"
             onClick={openContactModal}
           >
-            Contact me!
+            {translations.footer.contactMe[language]}
           </button>
         </Stack>
 

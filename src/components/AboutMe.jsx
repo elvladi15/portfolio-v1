@@ -1,7 +1,10 @@
 import Container from "react-bootstrap/Container";
 import ProfilePicture from "../assets/profile-picture.png";
+import { useLanguageContext } from "../LanguageContext";
+import { translations } from "../translations";
 
 export default function AboutMe() {
+  const { language } = useLanguageContext();
   return (
     <section id="about-me" className="py-5">
       <Container
@@ -25,12 +28,8 @@ export default function AboutMe() {
           w-md-50 ms-md-5 text-md-start
         "
         >
-          <h2 className="display-4 text-uppercase">About me</h2>
-          <p className="fs-4">
-            My name is Vladimir Francisco Díaz, I am a ReactJS Frontend Developer that loves
-            technology and web development. I like learning new things to improve my skills and
-            putting them into practice right away!
-          </p>
+          <h2 className="display-4 text-uppercase">{translations.aboutMe.title[language]}</h2>
+          <p className="fs-4">{translations.aboutMe.description[language]}</p>
         </div>
       </Container>
     </section>

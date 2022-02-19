@@ -1,5 +1,6 @@
 import Container from "react-bootstrap/Container";
 import Skill from "./Skill";
+import { useLanguageContext } from "../LanguageContext";
 
 import Html5Image from "../assets/skills_images/html5.png";
 import Css3Image from "../assets/skills_images/css3.png";
@@ -7,6 +8,7 @@ import JavaScriptImage from "../assets/skills_images/javascript.png";
 import ReactImage from "../assets/skills_images/react.png";
 import ScssImage from "../assets/skills_images/scss.png";
 import Bootstrap5Image from "../assets/skills_images/bootstrap5.png";
+import { translations } from "../translations";
 
 export default function MySkills() {
   const mySkills = [
@@ -17,6 +19,8 @@ export default function MySkills() {
     { name: "SCSS", image: ScssImage },
     { name: "Bootstrap", image: Bootstrap5Image },
   ];
+  const { language } = useLanguageContext();
+
   return (
     <section
       id="my-skills"
@@ -26,7 +30,9 @@ export default function MySkills() {
       className="py-5"
     >
       <Container>
-        <h2 className="display-4 text-uppercase text-center mb-5">My skills</h2>
+        <h2 className="display-4 text-uppercase text-center mb-5">
+          {translations.mySkills.title[language]}
+        </h2>
         <div
           style={{
             display: "flex",

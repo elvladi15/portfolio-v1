@@ -57,11 +57,11 @@
 
 @media (min-width: 768px) {
   #hero__bg {
-    right: calc(25vw - 50px);
+    right: calc(25vw - 150px);
     animation: backgroundAnimation 1s;
   }
   #hero__title {
-    width: 38vw;
+    width: 40vw;
   }
   #scroll-animation {
     margin-left: 0;

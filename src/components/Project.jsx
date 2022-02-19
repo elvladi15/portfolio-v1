@@ -1,8 +1,10 @@
 import { AiFillGithub } from "react-icons/ai";
+import { useLanguageContext } from "../LanguageContext";
+import { translations } from "../translations";
 
 export default function Project({ id, project }) {
   const { title, url, githubRepo, image } = project;
-
+  const { language } = useLanguageContext();
   return (
     <div
       className="
@@ -65,7 +67,7 @@ export default function Project({ id, project }) {
               mb-md-4 me-md-0
               "
             >
-              View project
+              {translations.project.viewProject[language]}
             </a>
             <a
               style={{
@@ -81,7 +83,7 @@ export default function Project({ id, project }) {
               target="_blank"
             >
               <AiFillGithub className="me-2" size={22} />
-              View on GitHub
+              {translations.project.viewOnGitHub[language]}
             </a>
           </div>
         </div>

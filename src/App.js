@@ -6,12 +6,13 @@ import MySkills from "./components/MySkills";
 import Footer from "./components/Footer";
 import ContactModal from "./components/ContactModal";
 import { useState } from "react";
+import { LanguageContextProvider } from "./LanguageContext";
 
 function App() {
   const [showContactModal, setShowContactModal] = useState(false);
 
   return (
-    <>
+    <LanguageContextProvider>
       <Header openContactModal={() => setShowContactModal(true)} />
       <Hero />
       <AboutMe />
@@ -19,7 +20,7 @@ function App() {
       <MySkills />
       <Footer openContactModal={() => setShowContactModal(true)} />
       <ContactModal show={showContactModal} handleClose={() => setShowContactModal(false)} />
-    </>
+    </LanguageContextProvider>
   );
 }
 

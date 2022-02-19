@@ -5,7 +5,9 @@ import Stack from "react-bootstrap/Stack";
 import Alert from "react-bootstrap/Alert";
 
 import { useState } from "react";
+import { useLanguageContext } from "../LanguageContext";
 import emailjs from "@emailjs/browser";
+import { translations } from "../translations";
 
 const STATUS = {
   UNSUBMITTED: "unsubmitted",
@@ -15,6 +17,8 @@ const STATUS = {
 };
 
 export default function ContactModal({ show, handleClose }) {
+  const { language } = useLanguageContext();
+
   const fieldsInitialValue = {
     name: { value: "", isFirstRender: true },
     email: { value: "", isFirstRender: true },
@@ -43,8 +47,9 @@ export default function ContactModal({ show, handleClose }) {
     return false;
   }
   function getInvalidEmailMessage() {
-    if (fields.email.value === "") return "*Please fill out the email";
-    if (!emailRegEx.test(fields.email.value)) return "*Please type a valid email address";
+    if (fields.email.value === "") return translations.contactMeModal.emptyEmailMessage[language];
+    if (!emailRegEx.test(fields.email.value))
+      return translations.contactMeModal.wrongEmailMessage[language];
   }
   function handleFieldChange(e) {
     setFields(prevFields => ({
@@ -98,13 +103,14 @@ export default function ContactModal({ show, handleClose }) {
         console.log(error);
         setStatus(STATUS.FAILED);
         setShowAlert(true);
-        setFields(fieldsInitialValue);
       });
   }
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title className="text-uppercase">Contact me</Modal.Title>
+        <Modal.Title className="text-uppercase">
+          {translations.contactMeModal.title[language]}
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Alert
@@ -113,14 +119,16 @@ export default function ContactModal({ show, handleClose }) {
           onClose={() => setShowAlert(false)}
           dismissible
         >
-          {status === STATUS.SUCCESS
-            ? "Contact information submitted successfully!"
-            : "Could not send contact information. Please try again."}
+          {
+            translations.contactMeModal[
+              status === STATUS.SUCCESS ? "successSubmitAlert" : "failedSubmitAlert"
+            ][language]
+          }
         </Alert>
 
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="name">Name</Form.Label>
+            <Form.Label htmlFor="name">{translations.contactMeModal.name[language]}</Form.Label>
             <Form.Control
               value={fields.name.value}
               name="name"
@@ -128,11 +136,15 @@ export default function ContactModal({ show, handleClose }) {
               isInvalid={isInvalidName}
               type="text"
             />
-            {isInvalidName && <p className="text-danger">*Please fill out the name</p>}
+            {isInvalidName && (
+              <p className="text-danger">
+                {translations.contactMeModal.emptyNameMessage[language]}
+              </p>
+            )}
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="email">Email</Form.Label>
+            <Form.Label htmlFor="email">{translations.contactMeModal.email[language]}</Form.Label>
             <Form.Control
               value={fields.email.value}
               isInvalid={isInvalidEmail}
@@ -144,7 +156,9 @@ export default function ContactModal({ show, handleClose }) {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="subject">Subject</Form.Label>
+            <Form.Label htmlFor="subject">
+              {translations.contactMeModal.subject[language]}
+            </Form.Label>
             <Form.Control
               value={fields.subject.value}
               name="subject"
@@ -152,11 +166,17 @@ export default function ContactModal({ show, handleClose }) {
               isInvalid={isInvalidSubject}
               id="subject"
             />
-            {isInvalidSubject && <p className="text-danger">*Please fill out the subject</p>}
+            {isInvalidSubject && (
+              <p className="text-danger">
+                {translations.contactMeModal.emptySubjectMessage[language]}
+              </p>
+            )}
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="message">Message</Form.Label>
+            <Form.Label htmlFor="message">
+              {translations.contactMeModal.message[language]}
+            </Form.Label>
             <Form.Control
               value={fields.message.value}
               name="message"
@@ -165,7 +185,11 @@ export default function ContactModal({ show, handleClose }) {
               as="textarea"
               rows={3}
             />
-            {isInvalidMessage && <p className="text-danger">*Please fill out the message</p>}
+            {isInvalidMessage && (
+              <p className="text-danger">
+                {translations.contactMeModal.emptyMessageMessage[language]}
+              </p>
+            )}
           </Form.Group>
 
           <Stack>
@@ -182,10 +206,10 @@ export default function ContactModal({ show, handleClose }) {
                     role="status"
                     aria-hidden={true}
                   />
-                  Loading...
+                  {translations.contactMeModal.loading[language]}
                 </>
               ) : (
-                "Send"
+                translations.contactMeModal.send[language]
               )}
             </Button>
           </Stack>
